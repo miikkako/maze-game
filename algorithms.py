@@ -245,7 +245,7 @@ class Mazematrix(object):
 
         if show:
             pygame.draw.rect(screen, wallcolor, (0,0,self.width*pixel, self.height*pixel))
-            screen.blit(Displaymessage('f:fast  s:slow',None,30).getsurface(textcolor),(10, gamescreen_height+30)); pygame.display.update()
+            screen.blit(Displaymessage('f:fast  s:slow', defaultfont, 30).getsurface(textcolor),(10, gamescreen_height+30)); pygame.display.update()
             pygame.draw.rect(screen, playercolor, (startx*pixel,starty*pixel,pixel,pixel)); pygame.display.update()
 
         smallestweightcoordinates = []

@@ -81,7 +81,7 @@ class Mainmenu(object):
         highscoretext.setcenter(x, y-50)
         screen.blit(highscoretext.getsurface(BLACK), highscoretext.pos)
         for item in scores:
-            text = Displaymessage(item[0]+' : '+str(item[1]), None, 30); text.setcenter(x, y)
+            text = Displaymessage(item[0]+' : '+str(item[1]), defaultfont, 30); text.setcenter(x, y)
             screen.blit(text.getsurface(BLACK), text.pos)
             y += 30
             if y > 560:
@@ -91,22 +91,22 @@ class Mainmenu(object):
         """This function is the first screen called in the main()
         User can input new parameters to start a new game or load the game from a file """
         # startscreen texts
-        welcometext = Displaymessage('Welcome to the MAZE!', None, 90); welcometext.setcenter(400,70)
-        welcometext2 = Displaymessage('Your objective is to get out', None, 30); welcometext2.setcenter(400,120)
-        instructionstext = Displaymessage('(Use arrow keys to navigate through the maze into the coloured portal. Then press spacebar)', None, 25)
+        welcometext = Displaymessage('Welcome to the MAZE!', defaultfont, 90); welcometext.setcenter(400,70)
+        welcometext2 = Displaymessage('Your objective is to get out', defaultfont, 30); welcometext2.setcenter(400,120)
+        instructionstext = Displaymessage('(Use arrow keys to navigate through the maze into the coloured portal. Then press spacebar)', defaultfont, 25)
         instructionstext.setcenter(400,150)
-        inputnametext = Displaymessage('Input your name:', None, 45)
-        playbuttontext = Displaymessage('PLAY!', None, 45)
-        loadbuttontext = Displaymessage('Load Game', None, 45)
-        readygamebuttontext = Displaymessage('Play a ready game!', None, 30)
-        highscoretext = Displaymessage('Highscores:', None, 45)
-        pixelerrortext = Displaymessage('Unrestricted pixelsize', None, 30); pixelerrortext.setcenter(150, 270)
-        pixelerrortext2 = Displaymessage('Unrestricted pixelsize', None, 30); pixelerrortext2.setcenter(150, 520)
+        inputnametext = Displaymessage('Input your name:', defaultfont, 45)
+        playbuttontext = Displaymessage('PLAY!', defaultfont, 45)
+        loadbuttontext = Displaymessage('Load Game', defaultfont, 45)
+        readygamebuttontext = Displaymessage('Play a ready game!', defaultfont, 30)
+        highscoretext = Displaymessage('Highscores:', defaultfont, 45)
+        pixelerrortext = Displaymessage('Unrestricted pixelsize', defaultfont, 30); pixelerrortext.setcenter(150, 270)
+        pixelerrortext2 = Displaymessage('Unrestricted pixelsize', defaultfont, 30); pixelerrortext2.setcenter(150, 520)
         
         # inputbox for inputting pixelsize
-        inputpixelbox = eztext.Input(x=305,y=220,font=pygame.font.Font(None,40),maxlength=2,restricted='1234567890',color=BLACK,prompt='')
-        pixeltext = Displaymessage('''Enter square's size in pixels. Max=60, Min=2''', None, 20); pixeltext.setcenter(inputpixelbox.x+15, inputpixelbox.y-30)
-        pixeltext2 = Displaymessage('does not affect when loading a game', None, 15); pixeltext2.setcenter(inputpixelbox.x+15, inputpixelbox.y-18)
+        inputpixelbox = eztext.Input(x=305,y=220,font=pygame.font.SysFont(defaultfont,40),maxlength=2,restricted='1234567890',color=BLACK,prompt='')
+        pixeltext = Displaymessage('''Enter square's size in pixels. Max=60, Min=2''', defaultfont, 20); pixeltext.setcenter(inputpixelbox.x+15, inputpixelbox.y-30)
+        pixeltext2 = Displaymessage('does not affect when loading a game', defaultfont, 15); pixeltext2.setcenter(inputpixelbox.x+15, inputpixelbox.y-18)
         #checkboxes for colortheme selection
         themecheckbox1 = Checkbox(300,290,35,35, BRIGHTRED, 'theme1')
         themecheckbox2 = Checkbox(300,370,35,35, WHITE, 'theme2')
@@ -116,7 +116,10 @@ class Mainmenu(object):
         # screen
         screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption(game_name+' Main Menu')
-        pygame.display.set_icon(icon_image)
+        try:
+            pygame.display.set_icon(icon_image)
+        except:
+            pass
 
         # read hiscores -file
         scorelist = self.read_scoretable()
@@ -208,21 +211,21 @@ class Mainmenu(object):
         """called from startscreen if player chooses to play a new game"""
         max_width = gamescreen_width//self.input_pixels
         max_height = gamescreen_height//self.input_pixels
-        instructiontext = Displaymessage('Give your name and the labyrinth´s size', None, 45); instructiontext.setcenter(400,40)
-        instructiontext2 = Displaymessage('Return-key: next box   Tab-key: previous box   Esc: back to Main Menu', None, 26); instructiontext2.setcenter(400,80)
-        instructiontext3 = Displaymessage('max height = '+str(max_height)+', max width = '+str(max_width), None, 22)
-        instructiontext4 = Displaymessage('min height and width = 10', None, 22)
-        instructiontext5 = Displaymessage('Big mazes take time to create',None, 22); instructiontext5.setcenter(400, 385)
-        startbuttontext = Displaymessage('GO!', None, 60)
-        nameprompttext = Displaymessage('Name:', None, 50)
-        failedinputtext = Displaymessage('You did not enter a name', None, 30)
-        failedinputtext2 = Displaymessage('You did not enter width or height', None, 30)
-        failedinputtext3 = Displaymessage('Entered width, height or levels are unrestricted', None, 30)
-        failedinputtext4 = Displaymessage('You did not enter the amount of levels', None, 30)
-        failedinputtext5 = Displaymessage('Name already exists', None, 30)
+        instructiontext = Displaymessage('Give your name and the labyrinth´s size', defaultfont, 45); instructiontext.setcenter(400,40)
+        instructiontext2 = Displaymessage('Return-key: next box   Tab-key: previous box   Esc: back to Main Menu', defaultfont, 26); instructiontext2.setcenter(400,80)
+        instructiontext3 = Displaymessage('max height = '+str(max_height)+', max width = '+str(max_width), defaultfont, 22)
+        instructiontext4 = Displaymessage('min height and width = 10', defaultfont, 22)
+        instructiontext5 = Displaymessage('Big mazes take time to create',defaultfont, 22); instructiontext5.setcenter(400, 385)
+        startbuttontext = Displaymessage('GO!', defaultfont, 60)
+        nameprompttext = Displaymessage('Name:', defaultfont, 50)
+        failedinputtext = Displaymessage('You did not enter a name', defaultfont, 30)
+        failedinputtext2 = Displaymessage('You did not enter width or height', defaultfont, 30)
+        failedinputtext3 = Displaymessage('Entered width, height or levels are unrestricted', defaultfont, 30)
+        failedinputtext4 = Displaymessage('You did not enter the amount of levels', defaultfont, 30)
+        failedinputtext5 = Displaymessage('Name already exists', defaultfont, 30)
         
         # startscreen inputboxes
-        inputnamebox = eztext.Input(x=370,y=255,font=pygame.font.Font(None,50),maxlength=10, color=BLACK, prompt='')
+        inputnamebox = eztext.Input(x=370,y=255,font=pygame.font.SysFont(defaultfont,50),maxlength=10, color=BLACK, prompt='')
         inputheightbox = eztext.Input(x=60,y=195,restricted='1234567890',maxlength=3,color=BLACK,prompt='height:')
         inputwidthbox = eztext.Input(x=60,y=285,restricted='1234567890',maxlength=3,color=BLACK,prompt='width:')
         inputlevelsbox = eztext.Input(x=60,y=375,restricted='1234567890',maxlength=2,color=BLACK,prompt='levels:')
@@ -232,7 +235,10 @@ class Mainmenu(object):
 
         screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption(game_name+' Input Menu')
-        pygame.display.set_icon(icon_image)
+        try:
+            pygame.display.set_icon(icon_image)
+        except:
+            pass
 
         event = pygame.event.Event(1); intro = True; currentinputbox = 1
 
@@ -352,17 +358,20 @@ class Mainmenu(object):
     def loadgamescreen(self):
         """This method is called if user presses LOAD GAME -button from startscreen"""
 
-        infotext = Displaymessage('Enter playername, which', None, 45); infotext.setcenter(300, 40)
-        infotext2 = Displaymessage('the savegame was named after', None, 45); infotext2.setcenter(300,80)
-        infotext3 = Displaymessage('Esc: back to Main Menu', None, 30); infotext3.setcenter(300,120)
-        loadbuttontext = Displaymessage('LOAD!', None, 45)
-        failedinputtext = Displaymessage('Save not found', None, 45)
+        infotext = Displaymessage('Enter playername, which', defaultfont, 45); infotext.setcenter(300, 40)
+        infotext2 = Displaymessage('the savegame was named after', defaultfont, 45); infotext2.setcenter(300,80)
+        infotext3 = Displaymessage('Esc: back to Main Menu', defaultfont, 30); infotext3.setcenter(300,120)
+        loadbuttontext = Displaymessage('LOAD!', defaultfont, 45)
+        failedinputtext = Displaymessage('Save not found', defaultfont, 45)
         # inputbox
-        inputname_eztext = eztext.Input(x=120,y=190,font=pygame.font.Font(None,45),maxlength=10, color=BLACK, prompt='name:')
+        inputname_eztext = eztext.Input(x=120,y=190,font=pygame.font.SysFont(defaultfont,45),maxlength=10, color=BLACK, prompt='name:')
 
         screen = pygame.display.set_mode([600, 450])
         pygame.display.set_caption(game_name+' Load Game Menu')
-        pygame.display.set_icon(icon_image)
+        try:
+            pygame.display.set_icon(icon_image)
+        except:
+            pass
 
         event = pygame.event.Event(1); intro = True
 
