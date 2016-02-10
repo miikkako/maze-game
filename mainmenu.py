@@ -226,9 +226,9 @@ class Mainmenu(object):
         
         # startscreen inputboxes
         inputnamebox = eztext.Input(x=370,y=255,font=pygame.font.SysFont(defaultfont,50),maxlength=10, color=BLACK, prompt='')
-        inputheightbox = eztext.Input(x=60,y=195,restricted='1234567890',maxlength=3,color=BLACK,prompt='height:')
-        inputwidthbox = eztext.Input(x=60,y=285,restricted='1234567890',maxlength=3,color=BLACK,prompt='width:')
-        inputlevelsbox = eztext.Input(x=60,y=375,restricted='1234567890',maxlength=2,color=BLACK,prompt='levels:')
+        inputheightbox = eztext.Input(x=60,y=195,font=pygame.font.SysFont(defaultfont,50), restricted='1234567890',maxlength=3,color=BLACK,prompt='height:')
+        inputwidthbox = eztext.Input(x=60,y=285,font=pygame.font.SysFont(defaultfont,50), restricted='1234567890',maxlength=3,color=BLACK,prompt='width:')
+        inputlevelsbox = eztext.Input(x=60,y=375,font=pygame.font.SysFont(defaultfont,50), restricted='1234567890',maxlength=2,color=BLACK,prompt='levels:')
         # width and height can only be numbers
         # checkbox for checking if player wants to see maze creation on screen
         checkbox_showcreation = Checkbox(600,350,35,35, WHITE, 'Show maze creation on screen')

@@ -4,15 +4,15 @@ from gameinfo import *
 
 class Checkbox(object):
 
-    def __init__(self, x, y, width, height, color, prompttext = None):
+    def __init__(self, x, y, width, height, color, prompttext = 'freesansboldms'):
         self.width = width
         self.x = x; self.y = y
         self.height = height
         self.color = color
-        if prompttext != None:
+        if prompttext != 'freesansboldms':
             self.prompt = Displaymessage(prompttext, defaultfont, width//2)
             self.prompt.setcenter(x+self.width//2, y-self.width//4)
-        else: self.prompt = None
+        else: self.prompt = 'freesansboldms'
 
     def show(self, screen, event):
         screen.blit(self.prompt.getsurface(BLACK),self.prompt.pos)
