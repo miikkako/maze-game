@@ -1,0 +1,1 @@
+MAZEv1 highscores_file

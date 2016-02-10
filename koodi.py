@@ -60,11 +60,11 @@ def main():
             else: 
                 mazematrix = Mazematrix(mainmenu.inputsize, lastportalxy)
             screen.fill(screencolor) # blit waiting-text on screen while matrixes are being created
-            wait_text = Displaymessage('Creating maze number '+str(i+1), defaultfont, 60)
+            wait_text = Displaymessage('Creating maze number '+str(i+1), defaultfont, 2*normalfontsize)
             wait_text.setcenter(random.randint(width//2-10, width//2+10), random.randint(height-80, height-20))
             screen.blit(wait_text.getsurface(textcolor), wait_text.pos)
-            screen.blit(Displaymessage('q: quit',defaultfont,30).getsurface(textcolor),(10, height-30))
-            screen.blit(Displaymessage('p: stop creating',defaultfont,30).getsurface(textcolor),(width-180, height-50)); pygame.display.update()
+            screen.blit(Displaymessage('q: quit',defaultfont,normalfontsize).getsurface(textcolor),(10, height-30))
+            screen.blit(Displaymessage('p: stop creating',defaultfont,normalfontsize).getsurface(textcolor),(width-180, height-50)); pygame.display.update()
             # make the current matrix a maze with prim's randomized algorithm and show creation on screen if selected
             mazematrix.makeprimsmaze(screen = screen, show = mainmenu.showcreation, pixel = pixel, mainmenu = mainmenu) 
             if mainmenu.select == 8: # if player pressed q while maze creation, jump back to mainmenu
@@ -113,17 +113,17 @@ def main():
     """-------------------------------------------------------------------------"""
 
     # define some displaytexts
-    mainwindowtext = Displaymessage('MAZE', defaultfont, width // 12); mainwindowtext.setcenter(width//1.45, height-60)
-    mainwindowtext2 = Displaymessage('Try to find your way into the portal', defaultfont, width // 25); mainwindowtext2.setcenter(width//1.45, height-20)
-    playernametext1 = Displaymessage('Playername:', defaultfont, width // 31); playernametext1.setcenter(width//3.3, height-77)
-    playernametext2 = Displaymessage(player.name, defaultfont, width // 31); playernametext2.setcenter(width//3.5, height-58)
-    timetext = Displaymessage('Score: ' + str(points), defaultfont, width // 36); timetext.setcenter(width//3.5, height-35)
-    leveltext = Displaymessage('Level '+str(current_room_no+1)+' of '+str(len(rooms)), defaultfont, width // 36); leveltext.setcenter(width//3.4, height-15)
-    savequittext = Displaymessage('q: quit  s: save&quit', defaultfont, width // 38); savequittext.setcenter(100,height-53)
-    portaltext = Displaymessage('Spacebar: enter portal', defaultfont, width // 38); portaltext.setcenter(100, height-77) 
-    giveuptext = Displaymessage('j: give up and delete save', defaultfont, width // 40); giveuptext.setcenter(105, height-30)
-    pausetext = Displaymessage('p: pause', defaultfont, width // 40); pausetext.setcenter(90, height-12)
-    winningtext = Displaymessage('You Win!', defaultfont, width // 5)
+    mainwindowtext = Displaymessage('MAZE', defaultfont, width // 15); mainwindowtext.setcenter(width//1.45, height-60)
+    mainwindowtext2 = Displaymessage('Try to find your way into the portal', defaultfont, width // 40); mainwindowtext2.setcenter(width//1.45, height-20)
+    playernametext1 = Displaymessage('Playername:', defaultfont, width // 50); playernametext1.setcenter(width//3.3, height-77)
+    playernametext2 = Displaymessage(player.name, defaultfont, width // 50); playernametext2.setcenter(width//3.5, height-58)
+    timetext = Displaymessage('Score: ' + str(points), defaultfont, width // 55); timetext.setcenter(width//3.5, height-35)
+    leveltext = Displaymessage('Level '+str(current_room_no+1)+' of '+str(len(rooms)), defaultfont, width // 50); leveltext.setcenter(width//3.4, height-15)
+    savequittext = Displaymessage('q: quit  s: save&quit', defaultfont, width // 58); savequittext.setcenter(100,height-53)
+    portaltext = Displaymessage('Spacebar: enter portal', defaultfont, width // 58); portaltext.setcenter(100, height-77) 
+    giveuptext = Displaymessage('j: give up and delete save', defaultfont, width // 60); giveuptext.setcenter(105, height-30)
+    pausetext = Displaymessage('p: pause', defaultfont, width // 60); pausetext.setcenter(90, height-12)
+    winningtext = Displaymessage('You Win!', defaultfont, width // 12)
 
     # make player a sprite. for now there is only the player in the movingsprites-list
     movingsprites = pygame.sprite.Group()
@@ -256,7 +256,7 @@ def main():
         if points <= 0: gratz = 'bad :('
         elif 100 > points > 0: gratz = 'nice.'
         else: gratz = 'AMAZING!'
-        scoretext = Displaymessage('You were '+gratz+' Score was: '+str(int(points)), defaultfont, width // 13)
+        scoretext = Displaymessage('You were '+gratz+' Score was: '+str(int(points)), defaultfont, width // 18)
         scoretext.setcenter(width//2, height//3) # flash winning-text
         screen.blit(scoretext.getsurface(playercolor),scoretext.pos)
         winningtext.setcenter(width//2,height//2)
@@ -270,7 +270,7 @@ def main():
         gameIO.handle_highscore() # append player's name and scores to highscores-file
 
     elif done == 3: # lose
-        screen.blit(Displaymessage('Loading...',defaultfont, 30).getsurface(textcolor),[width-150, height-73]); pygame.display.update()
+        screen.blit(Displaymessage('Loading...',defaultfont, normalfontsize).getsurface(textcolor),[width-150, height-73]); pygame.display.update()
         for room in rooms: # add solution-paths to matrixes
             room.wallmatrix.addAstarsolution()
         try:
@@ -293,7 +293,7 @@ def main():
             current_room.showsolution(screen, playercolor, portalcolor, mainmenu, fast=True); time.sleep(0.5)
             current_room_no += 1
         # lose-animation
-        losetext = Displaymessage('YOU LOSE, ' + player.name + '!', defaultfont, 20)
+        losetext = Displaymessage('YOU LOSE, ' + player.name + '!', defaultfont, smallfontsize)
         losetext.setcenter(width//2,height//2)
         for i in range(40):
             pygame.draw.rect(screen, screencolor, (0, 0, width, height-100)) # blank the game field

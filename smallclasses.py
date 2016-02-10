@@ -4,15 +4,15 @@ from gameinfo import *
 
 class Checkbox(object):
 
-    def __init__(self, x, y, width, height, color, prompttext = 'freesansboldms'):
+    def __init__(self, x, y, width, height, color, prompttext = ''):
         self.width = width
         self.x = x; self.y = y
         self.height = height
         self.color = color
-        if prompttext != 'freesansboldms':
+        if prompttext != '':
             self.prompt = Displaymessage(prompttext, defaultfont, width//2)
             self.prompt.setcenter(x+self.width//2, y-self.width//4)
-        else: self.prompt = 'freesansboldms'
+        else: self.prompt = ''
 
     def show(self, screen, event):
         screen.blit(self.prompt.getsurface(BLACK),self.prompt.pos)
@@ -64,8 +64,8 @@ def ismouseinrect(x,y,width,height):
 
 def pause(screen, textcolor):
     pause = True
-    pausemessage = Displaymessage('PAUSED', defaultfont, 140); pausemessage.setcenter(gamescreen_width//2, (gamescreen_height-100)//2)
-    info_message = Displaymessage('press Spacebar or p to unpause', defaultfont, 90); info_message.setcenter(gamescreen_width//2, gamescreen_height-200)
+    pausemessage = Displaymessage('PAUSED', defaultfont, 4*normalfontsize); pausemessage.setcenter(gamescreen_width//2, (gamescreen_height-100)//2)
+    info_message = Displaymessage('press Spacebar or p to unpause', defaultfont, 3*normalfontsize); info_message.setcenter(gamescreen_width//2, gamescreen_height-200)
     while pause:
         screen.blit(pausemessage.getsurface(textcolor), pausemessage.pos)
         screen.blit(info_message.getsurface(textcolor), info_message.pos)
