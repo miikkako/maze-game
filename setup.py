@@ -13,10 +13,8 @@ if sys.platform == "win32":
 
 packages = ["pygame", "os", "time", "random", "math", "time", "sys", "string"]
 #includes = ["gameinfo"]
-# include_files = [("Elevator_music.ogg", "Elevator_music.ogg"), ("Pat_and_Mat_intro.ogg", "Pat_and_Mat_intro.ogg"), 
-# 	("RedCheck.png", "RedCheck.png"), ("MazeIcon1.png", "MazeIcon1.png"), ("freesansbold.ttf", "freesansbold.ttf")]
+include_files = ["Elevator_music.ogg", "Pat_and_Mat_intro.ogg", "RedCheck.png","MazeIcon1.png"]
 # includes = []
-include_files = []
 
 excludes = ["Savegames", "highscores.ma", ".DS_Store", "testIO", "testmatrixalgorithm", ".pyc"]
 
